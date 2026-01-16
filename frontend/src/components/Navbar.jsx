@@ -33,7 +33,7 @@ const Navbar = () => {
 
           {/* Settings */}
           <Link
-            to="/settings"
+            to="/setting"
             className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200"
           >
             <FiSettings size={20} />
