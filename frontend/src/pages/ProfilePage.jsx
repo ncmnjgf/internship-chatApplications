@@ -4,19 +4,27 @@ import { useAuthStore } from "../store/useAuthStore";
 
 export default function ProfilePage() {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
-  const [preview, setPreview] = useState(null);
+  const [select, setSelecte] = useState(null);
+   
+  const handleImageUpload = async (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const reader = new FileReader();
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreview(reader.result);
-      updateProfile({ avatar: reader.result });
-    };
-    reader.readAsDataURL(file);
+  reader.onload = async () => {
+    const base64Image = reader.result;
+
+    // preview instantly
+    setSelecte(base64Image);
+
+    // update backend
+    await updateProfile({ profilePic: base64Image });
   };
+
+  reader.readAsDataURL(file);
+};
+
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -38,7 +46,7 @@ export default function ProfilePage() {
           <div className="flex flex-col items-center md:items-start gap-6">
             <div className="relative group">
               <img
-                src={preview || authUser?.avatar || "https://ui-avatars.com/api/?name=User&background=0D1117&color=fff"}
+                src={select || authUser.profilePic || "https://ui-avatars.com/api/?name=User&background=0D1117&color=fff"}
                 alt="Profile"
                 className="w-36 h-36 rounded-2xl object-cover border border-white/20"
               />
