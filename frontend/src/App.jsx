@@ -13,10 +13,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-  const {theme}= useThemeStore();
+  const { theme } = useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
+
 
   if (isCheckingAuth && !authUser)
     return (
@@ -25,7 +27,7 @@ const App = () => {
       </div>
     );
   return (
-    <div data-theme = {theme}>
+    <div>
       <Navbar />
       <Routes>
         <Route
@@ -46,7 +48,7 @@ const App = () => {
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };

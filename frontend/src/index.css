@@ -1,81 +1,104 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-@plugin "daisyui";
-
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
+/* ============================= */
+/* Layout & Typography */
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #242424;
-  color: rgba(255, 255, 255, 0.87);
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ============================= */
+/* Theme Variables */
+
+/* Default: White Theme */
+:root {
+  --bg: #f8f9fa;           /* overall background */
+  --surface: #ffffff;      /* cards, modals, navbar */
+  --text-primary: #111827; /* main text */
+  --text-secondary: #4b5563; /* muted text */
+  --accent: #2563eb;       /* buttons, links */
+  --hover: #e0e7ff;        /* hover for buttons/cards */
+  --shadow: rgba(0,0,0,0.1);
 }
 
+/* Black/Dark Theme */
+.theme-black {
+  --bg: #121212;
+  --surface: #1f1f1f;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --accent: #60a5fa;
+  --hover: #1e40af33;
+  --shadow: rgba(0,0,0,0.7);
+}
+
+/* ============================= */
+/* Global Styles */
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+/* Containers like cards, navbar, modals */
+.card, nav, header, footer, section {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 0 4px 6px var(--shadow);
+  border-radius: 0.5rem;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Buttons */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--surface);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: var(--hover);
+  color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 10px var(--shadow);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  opacity: 0.8;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+/* Inputs */
+input, textarea, select {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--text-secondary);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--hover);
+}
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent);
 }
