@@ -1,34 +1,39 @@
 import { FaUsers } from "react-icons/fa";
 
 const SidebarSkeleton = () => {
-  const skeletonContacts = Array(8).fill(null);
+  const skeletonContacts = Array.from({ length: 10 });
 
   return (
     <aside
-      className="h-full w-20 lg:w-72 border-r border-base-300 
-      flex flex-col transition-all duration-200"
+      className="h-full w-20 lg:w-72 border-r border-base-300
+      flex flex-col bg-base-100"
     >
       {/* Header */}
-      <div className="border-b border-base-300 w-full p-5">
-        <div className="flex items-center gap-2">
-          <FaUsers size={22} />
-          <span className="font-medium hidden lg:block">Contacts</span>
+      <div className="border-b border-base-300 w-full px-4 py-5">
+        <div className="flex items-center gap-3">
+          <FaUsers size={20} className="opacity-60" />
+          <span className="font-semibold hidden lg:block text-sm opacity-70">
+            Contacts
+          </span>
         </div>
       </div>
 
       {/* Skeleton Contacts */}
-      <div className="overflow-y-auto w-full py-3">
+      <div className="flex-1 overflow-y-auto py-2">
         {skeletonContacts.map((_, idx) => (
-          <div key={idx} className="w-full p-3 flex items-center gap-3">
-            {/* Avatar skeleton */}
-            <div className="relative mx-auto lg:mx-0">
-              <div className="skeleton size-12 rounded-full" />
+          <div
+            key={idx}
+            className="w-full px-3 py-2 flex items-center gap-3"
+          >
+            {/* Avatar */}
+            <div className="shrink-0">
+              <div className="skeleton w-11 h-11 rounded-full" />
             </div>
 
-            {/* User info skeleton */}
-            <div className="hidden lg:block text-left min-w-0 flex-1">
-              <div className="skeleton h-4 w-32 mb-2" />
-              <div className="skeleton h-3 w-16" />
+            {/* Text */}
+            <div className="hidden lg:flex flex-col gap-2 flex-1">
+              <div className="skeleton h-4 w-32 rounded" />
+              <div className="skeleton h-3 w-20 rounded" />
             </div>
           </div>
         ))}
