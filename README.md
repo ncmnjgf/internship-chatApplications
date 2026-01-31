@@ -4,4 +4,6 @@ today i add the backend , today i learned about the daisy ui , today i learned a
  today i learned about json format , and mongodb connection
 
  today i added socket.io,
- today i learned about the distribute systems
+ today i learned about the distribute systems,
+
+ today ilearn about llms baasics
