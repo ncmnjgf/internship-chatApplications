@@ -6,4 +6,5 @@ today i add the backend , today i learned about the daisy ui , today i learned a
  today i added socket.io,
  today i learned about the distribute systems,
 
- today ilearn about llms baasics
+ today ilearn about llms baasics,
+ how to integrate AI
