@@ -7,4 +7,5 @@ today i add the backend , today i learned about the daisy ui , today i learned a
  today i learned about the distribute systems,
 
  today ilearn about llms baasics,
- how to integrate AI
+ how to integrate AI,
+ llmsdo'nt have tools
