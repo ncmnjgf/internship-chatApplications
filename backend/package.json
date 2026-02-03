@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/inedx.js"
+    "dev": "nodemon src/inedx.js",
+    "start": "node src/inedx.js"
   },
   "keywords": [],
   "author": "",
