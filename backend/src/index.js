@@ -1,26 +1,27 @@
-import authRoutes from "./routes/auth.route.js";
-import messageRoutes from "./routes/message.route.js";
-import dotenv from "dotenv";
 import express from "express";
-import { connectDB } from "./lib/db.js";
-import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
+import { connectDB } from "./lib/db.js";
 import { app, server } from "./lib/socket.js";
 
 dotenv.config();
 
-/* ================== BASIC SETUP ================== */
+/* ================= BASIC SETUP ================= */
 const PORT = process.env.PORT || 5001;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/* ================= MIDDLEWARE ================= */
 app.use(express.json());
 app.use(cookieParser());
 
-/* ================== CORS ================== */
 app.use(
   cors({
     origin:
@@ -31,23 +32,25 @@ app.use(
   })
 );
 
-/* ================== API ROUTES ================== */
+/* ================= API ROUTES ================= */
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-/* ================== FRONTEND SERVE ================== */
+/* ================= FRONTEND SERVE (PRODUCTION) ================= */
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(__dirname, "../../frontend/dist");
 
+  // Serve static assets
   app.use(express.static(frontendPath));
 
-  app.get("/*", (req, res) => {
+  // SPA fallback (NO wildcard → Node 22 SAFE)
+  app.use((req, res) => {
     res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
 
-/* ================== START SERVER ================== */
-server.listen(PORT, () => {
+/* ================= START SERVER ================= */
+server.listen(PORT, async () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  connectDB();
+  await connectDB();
 });
