@@ -52,5 +52,5 @@ if (process.env.NODE_ENV === "production") {
 /* ================= START SERVER ================= */
 server.listen(PORT, async () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  console.log("connect sucessfully ");
+  console.log("connect sucessfully to the server ");
 });
