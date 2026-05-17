@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === "production") {
 
 /* ================= START SERVER ================= */
 server.listen(PORT, async () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🚀 Server ${PORT}`);
 
 
 });
